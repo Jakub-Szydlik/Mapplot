@@ -25,19 +25,14 @@ st.sidebar.warning("""
 Parametr S to suma kwadratów odchyleń. Jeśli Twoje dane Y są rzędu 30-40, musisz ustawić S na poziomie 100-500, aby zobaczyć wygładzenie.
 """)
 
-# Dynamiczny wybór zakresu S, aby każda skala danych "działała"
-s_max_choice = st.sidebar.select_slider(
-    "Wybierz zakres czułości suwaka:",
-    options=[1, 10, 100, 1000, 5000, 10000],
-    value=1000
-)
-
-s_final = st.sidebar.slider(
-    "Przesuń, aby wygładzić (S):",
+# ZAMIANA NA POLE DO WPISYWANIA WARTOŚCI
+s_final = st.sidebar.number_input(
+    "Wpisz wartość S (Gładkość):",
     min_value=0.0,
-    max_value=float(s_max_choice),
+    max_value=100000.0, # Bardzo duży zakres dla każdej skali danych
     value=0.0,
-    step=0.1
+    step=0.1,
+    format="%.2f"
 )
 
 # ==========================================
