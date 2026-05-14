@@ -8,16 +8,16 @@ import pandas as pd
 # KONFIGURACJA
 # ==========================================
 st.set_page_config(page_title="Natural Curve Pro", layout="wide")
-st.title("🚀 Uniwersalny Aproksymator Wykresów")
+st.title(" Uniwersalny Aproksymator Wykresów")
 
 # ==========================================
 # PANEL BOCZNY
 # ==========================================
-st.sidebar.header("📂 Ustawienia i Dane")
+st.sidebar.header(" Ustawienia i Dane")
 uploaded_file = st.sidebar.file_uploader("Wgraj plik TXT", type="txt")
 
 st.sidebar.markdown("---")
-st.sidebar.subheader("📈 Kontrola Gładkości (S)")
+st.sidebar.subheader(" Kontrola Gładkości (S)")
 
 # Wyjaśnienie mechanizmu S
 st.sidebar.warning("""
@@ -87,4 +87,4 @@ if uploaded_file is not None:
     except Exception as e:
         st.error(f"Błąd: {e}")
 else:
-    st.info("👈 Wgraj plik .txt, aby zacząć.")
+    st.info(" Wgraj plik .txt, aby zacząć.")
