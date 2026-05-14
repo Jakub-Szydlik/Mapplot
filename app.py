@@ -9,7 +9,7 @@ import pandas as pd
 # ==========================================
 st.set_page_config(page_title="Natural Curve Pro", layout="wide")
 
-st.title("📈 Uniwersalny Aproksymator Naturalny")
+st.title(" Uniwersalny Aproksymator Wykresów")
 st.markdown("""
 Ta aplikacja dopasowuje gładką krzywą do Twoich danych przy użyciu **splajnów sześciennych**. 
 Model dba o ciągłość pochodnych, co eliminuce nienaturalne 'falowanie' wykresu.
@@ -18,7 +18,7 @@ Model dba o ciągłość pochodnych, co eliminuce nienaturalne 'falowanie' wykre
 # ==========================================
 # PANEL BOCZNY (USTAWIENIA)
 # ==========================================
-st.sidebar.header("⚙️ Ustawienia i Dane")
+st.sidebar.header(" Ustawienia i Dane")
 
 # 1. Wgrywanie pliku
 uploaded_file = st.sidebar.file_uploader("Wgraj plik TXT z danymi", type="txt")
