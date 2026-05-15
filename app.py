@@ -8,16 +8,23 @@ import pandas as pd
 # KONFIGURACJA
 # ==========================================
 st.set_page_config(page_title="Natural Curve Pro", layout="wide")
-st.title(" Uniwersalny Aproksymator Wykresów")
+st.title("  Uniwersalny Aproksymator Wykresów")
 
 # ==========================================
 # PANEL BOCZNY
 # ==========================================
-st.sidebar.header(" Ustawienia i Dane")
+st.sidebar.header("  Ustawienia i Dane")
 uploaded_file = st.sidebar.file_uploader("Wgraj plik TXT", type="txt")
 
 st.sidebar.markdown("---")
-st.sidebar.subheader(" Kontrola Gładkości (S)")
+st.sidebar.subheader("  Opisy Osi Wykresu")
+
+# Nowe pola do wpisywania nazw osi
+x_label_input = st.sidebar.text_input("Nazwa osi X:", value="Oś X")
+y_label_input = st.sidebar.text_input("Nazwa osi Y:", value="Oś Y")
+
+st.sidebar.markdown("---")
+st.sidebar.subheader("  Kontrola Gładkości (S)")
 
 # Wyjaśnienie mechanizmu S
 st.sidebar.warning("""
@@ -25,13 +32,13 @@ st.sidebar.warning("""
 Parametr S to suma kwadratów odchyleń. Jeśli Twoje dane Y są rzędu 30-40, musisz ustawić S na poziomie 100-500, aby zobaczyć wygładzenie.
 """)
 
-# ZAMIANA NA POLE DO WPISYWANIA WARTOŚCI
+# Pole do wpisywania wartości S
 s_final = st.sidebar.number_input(
     "Wpisz wartość S (Gładkość):",
     min_value=0.0,
     max_value=100000.0, # Bardzo duży zakres dla każdej skali danych
     value=0.0,
-    step=0.1,
+    step=0.001,
     format="%.2f"
 )
 
@@ -75,8 +82,10 @@ if uploaded_file is not None:
             else:
                 ax.scatter(x_pts, y_pts, color='red', edgecolor='black', s=60, label='Punkty pomiarowe')
             
-            ax.set_xlabel("Oś X")
-            ax.set_ylabel("Oś Y")
+            # Zastosowanie dynamicznych nazw osi z panelu bocznego
+            ax.set_xlabel(x_label_input if x_label_input else "Oś X")
+            ax.set_ylabel(y_label_input if y_label_input else "Oś Y")
+            
             ax.grid(True, linestyle=':', alpha=0.6)
             ax.legend()
             st.pyplot(fig)
@@ -87,4 +96,4 @@ if uploaded_file is not None:
     except Exception as e:
         st.error(f"Błąd: {e}")
 else:
-    st.info(" Wgraj plik .txt, aby zacząć.")
+    st.info("  Wgraj plik .txt, aby zacząć.")
